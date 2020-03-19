@@ -103,12 +103,8 @@ a:hover, a:active {
 }
 
 .bg-transparent {
-    background: rgba(255,255,255,.2) !important;
-    color: rgba(255,255,255,.9) !important;
-}
-
-.bg-transparent:hover {
-    background: rgba(255,255,255,.3) !important;
+    /* background: rgba(120,199,235,.75) !important; */
+    background: rgba(0,92,145,.75) !important;
 }
 
 .hero {

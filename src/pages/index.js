@@ -53,7 +53,7 @@ const IndexPage = () => {
   return(
 
     <Layout >
-      <SEO title="Logistica personalizada" />
+      <SEO title="Logistica personalizada en Baja California" />
 
       <Carousel />
 
