@@ -114,9 +114,24 @@ a:hover, a:active {
     height: 700px;
     min-height: 650px;
     background: linear-gradient(90deg, #78C7EB, #005C91);
-    background-image: url("../../images/carousel/hero.jpg");
+    /* background-image: url("../../images/carousel/hero.jpg"); */
     background-size: cover;
     background-position: center center;
+}
+
+.hero .background {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    object-fit: cover;
+
+}
+
+.hero .row {
+    z-index: 20;
 }
 
 .hero:before {
@@ -149,6 +164,7 @@ a:hover, a:active {
 @media (max-width: 767px) {
 
     .nav-responsive {
+        /* display: none !important; */
         background: #fff;
         position: fixed;
         flex-direction: column !important;
@@ -180,5 +196,4 @@ a:hover, a:active {
     }
 
 }
-
 

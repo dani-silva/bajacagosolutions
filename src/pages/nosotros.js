@@ -51,28 +51,7 @@ const AboutPage = () => {
 
   return(
 
-    <Layout afterHeader={
-      <div className="border-bottom">
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-6 d-flex justify-content-start">
-              <ul className="nav">
-                <li className="nav-item">
-                  <a href="https://facebook.com/dovlius" className="nav-link px-2 py-2" target="_blank" rel="noopener noreferrer" title="Facebook"><i className="mdi mdi-facebook text-primary"> </i></a>
-                </li>
-                <li className="nav-item">
-                  <a href="https://facebook.com/dovlius" className="nav-link px-2 py-2" target="_blank" rel="noopener noreferrer" title="Pinterest"><i className="mdi mdi-pinterest text-primary"> </i></a>
-                </li>
-              </ul>
-            </div>
-            <div className="col-sm-6 d-flex align-items-center justify-content-end text-primary small">
-              <span><i className="mdi mdi-phone text-primary"> </i> (646) 978 5965 </span>
-              <span><i className="mdi mdi-email ml-4 text-primary"> </i> info@bajacargosolutions.com </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    }>
+    <Layout>
         <SEO title="Logistica en transporte internacional" />
         
         <section className="container py-5 pulse animated">

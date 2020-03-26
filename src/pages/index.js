@@ -52,7 +52,7 @@ const IndexPage = () => {
 
   return(
 
-    <Layout >
+    <Layout>
       <SEO title="Logistica personalizada en Baja California" />
 
       <Carousel />
@@ -69,7 +69,7 @@ const IndexPage = () => {
         <div className="px-5 d-flex flex-column align-items-center">
           <h2 className="text-dark pb-3 text-center text-center">Soluciones en logística táctica en transporte Internacional</h2>
           <p className="text-center">Dedicados a dar un trato personalizado cumpliendo en tiempo y forma los requerimientos de nuestros clientes.</p>
-          <Link to="paginas-web" className="btn btn-primary rounded">Ver los servicios</Link>
+          <Link to="/servicios" className="btn btn-primary rounded">Ver los servicios</Link>
         </div>
       </section>
 
@@ -130,42 +130,6 @@ const IndexPage = () => {
           </div>
         </div>
       </section>
-
-      <section className="container py-5">
-        <div className="row">
-          <div className="mb-5 d-flex flex-column align-items-center">
-            <span className="tag">Preguntas frecuentes</span>
-            <h2 className="text-dark pb-3 text-center text-center">Convallis lobortis cursus ut in hac sit pellentesque sed pharetra.</h2>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-md-6 col-sm-12 pb-5">
-            <div className="pb-5">
-              <h5 className="text-dark pb-2">Servicio 1</h5>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Convallis lobortis cursus ut in hac sit pellentesque sed pharetra. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </div>
-            <div className="pb-5">
-              <h5 className="text-dark pb-2">Servicio 1</h5>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Convallis lobortis cursus ut in hac sit pellentesque sed pharetra.</p>
-            </div>
-            <div className="pb-5">
-              <h5 className="text-dark pb-2">Servicio 1</h5>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Convallis lobortis cursus ut in hac sit pellentesque sed pharetra.</p>
-            </div>
-          </div>
-          <div className="col-md-6 col-sm-12 pb-5">
-            <div className="pb-5">
-              <h5 className="text-dark pb-2">Servicio 1</h5>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Convallis lobortis cursus ut in hac sit pellentesque sed pharetra.</p>
-            </div>
-            <div className="pb-5">
-              <h5 className="text-dark pb-2">Servicio 1</h5>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Convallis lobortis cursus ut in hac sit pellentesque sed pharetra.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
     </Layout>
   )
 }

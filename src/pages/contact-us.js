@@ -6,7 +6,7 @@ import Img from 'gatsby-image'
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const ContactPage = () => {
+const ContactEnPage = () => {
   const data = useStaticQuery(graphql`
       query {
           wechat: file(relativePath: { eq: "wechat.png" }) {
@@ -21,22 +21,31 @@ const ContactPage = () => {
 
   const [isErrorForm, setErrorForm] = React.useState(false)
   const [isSubmit, setIsSubmit] = React.useState(false)
-  const [isResponse, setResponse] = React.useState({status: "empty", message: ""})
+  const [isResponse, setResponse] = React.useState("")
 
   const validateForm = (e) => {
     e.preventDefault()
     
     const data = e.target
-
+    
+    console.log('Formato datos', new FormData(data))
+    
     if(data.name.value && data.email.value && data.message.value ){
       setIsSubmit(true)
       fetch(
         "/contact.php",
         {
           method: "POST",
-          body: new FormData(data),
+          body: JSON.stringify({
+            name: data.name.value,
+            company: data.company.value,
+            email: data.email.value,
+            phone: data.phone.value,
+            subject: data.subject.value,
+            message: data.message.value,
+          }),
           header: {
-            'Content-Type': 'multipart/form-data'
+            'Content-Type': 'application/json'
           }
         }
       )
@@ -63,14 +72,14 @@ const ContactPage = () => {
 
   return(
 
-    <Layout>
-        <SEO title="Ubicación estratégica" />
+    <Layout en={true}>
+        <SEO title="Contact us" />
 
         <section className="container pt-5 rounded">
           <div className="px-5 py-5 d-flex flex-column align-items-center">
 
               <h1 className="h3">Baja Cargo Solutions</h1>
-              <p className="text-center">Dedicados a dar un trato personalizado para las cargas, fletes o movimientos de Exportación e Importación en México, cumpliendo en tiempo y forma los requerimientos de nuestros clientes.</p>
+              <p className="text-center">We are here to help you. Request your quote today!</p>
           </div>
         </section>
 
@@ -79,8 +88,9 @@ const ContactPage = () => {
         </section>
 
         <section className="container pt-5">
-          <h3>Logística personalizada a tus necesidades.</h3>
-          <p>Cotiza en línea o directamente con uno de nuestros operadores vía telefónica o si gustas escríbenos un mensaje en el formulario y te atenderemos a la brevedad, estamos para ayudarte.</p>
+          <h3>We are your reliable cargo solution</h3>
+          <p>Contact us if you need more information about our ocean freight shipping services. 
+            We proudly ship products, goods, and equipment anywhere in the world.</p>
           <div className="row py-5">
             <form 
               className={`col-md-7 m-1 m-md-0 border py-4 mb-5 rounded bg-white ${isErrorForm ? "was-validated" : ""}`} 
@@ -90,58 +100,58 @@ const ContactPage = () => {
             >
               <div className="form-row">
                 <div className="form-group mb-4 col-md-6">
-                  <label htmlFor="name"> *Nombre de Contacto</label>
-                  <input type="text" className="form-control" name="name" id="name" placeholder="Nombre" required/>
+                  <label htmlFor="name"> *Contact Name</label>
+                  <input type="text" className="form-control" name="name" id="name" placeholder="Name" required/>
                   <div className="valid-feedback">
-                    Campo validado
+                    Good
                   </div>
                   <div className="invalid-feedback">
-                    Campo requerido, porfavor ingrese la información correcta.
+                    Required field.
                   </div>
                 </div>
                 <div className="form-group mb-4 col-md-6">
-                  <label htmlFor="company">Nombre de la Empresa</label>
-                  <input type="text" className="form-control" name="company" id="company" placeholder="Compañia MX" />
+                  <label htmlFor="company">Company</label>
+                  <input type="text" className="form-control" name="company" id="company" placeholder="Company" />
                 </div>
               </div>
               <div className="form-group mb-4">
                 <label htmlFor="email">*Correo de Contacto</label>
-                <input type="email" className="form-control" name="email" id="email" placeholder="nombre@compañia.com" required />
+                <input type="email" className="form-control" name="email" id="email" placeholder="name@example.com" required />
                 <div className="valid-feedback">
-                  Campo validado
+                  Good
                 </div>
                 <div className="invalid-feedback">
-                  Campo requerido, porfavor ingrese la información correcta.
+                  Required field.
                 </div>
               </div>
               <div className="form-group mb-4">
                 <label htmlFor="phone">*Telefono de Contacto</label>
                 <input type="text" className="form-control" name="phone" id="phone" placeholder="(000) 000 0000" required />
                   <div className="valid-feedback">
-                    Campo validado
+                    Good
                   </div>
                   <div className="invalid-feedback">
-                    Campo requerido, porfavor ingrese la información correcta.
+                    Required field.
                   </div>
               </div>
               <div className="form-group mb-4">
-                <label htmlFor="subject">*Asunto del Mensaje</label>
+                <label htmlFor="subject">*Subject</label>
                 <select name="subject" id="subject" className="form-control" required>
-                  <option defaultValue>Más Información</option>
-                  <option>Cotización</option>
-                  <option>Agendar Cita</option>
+                  <option defaultValue>More Information</option>
+                  <option>Quote</option>
+                  <option>Schedule appointment</option>
                 </select>
               </div>
 
               <div className="form-group mb-4">
                 <div className="mb-3">
-                  <label htmlFor="message">*Mensaje</label>
-                  <textarea className="form-control" name="message" id="message" placeholder="Ingrese aqui tu mensaje..." rows="7" required></textarea>
+                  <label htmlFor="message">*Message</label>
+                  <textarea className="form-control" name="message" id="message" placeholder="Message..." rows="7" required></textarea>
                   <div className="valid-feedback">
-                    Campo validado
+                    Good
                   </div>
                   <div className="invalid-feedback">
-                    Campo requerido, porfavor ingrese la información correcta.
+                    Required field.
                   </div>
                 </div>
               </div>
@@ -150,50 +160,52 @@ const ContactPage = () => {
                 <div className="form-check">
                   <input className="form-check-input custom-control-input" type="checkbox" id="check" required />
                   <label className="form-check-label custom-control-label" htmlFor="check" >
-                    Acepto <Link to="terms">Términos y Condiciones</Link>
+                    I accept <Link to="terms">Térms & Conditions</Link>
                   </label>
                   <div className="valid-feedback">
-                    Campo validado
+                    Good
                   </div>
                   <div className="invalid-feedback">
-                    Campo requerido, porfavor acepte los términos y condiciones.
+                    Required field
                   </div>
                 </div>
               </div>
               {
-                isResponse.status != 'empty'
-                ? <div className={`alert alert-${isResponse.status}`}>{isResponse.message}</div>
-                : null
+                isResponse != ''
+                ?
+                <div className="alert alert-success">{isResponse}</div>
+                :
+                null
               }
               {
                 isSubmit
                 ?
                 <button className="btn btn-primary" type="submit" disabled>
                   <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                  Enviando...
+                  Sending...
                 </button>
                 :
-                <button type="submit" className="btn btn-primary">Enviar Mensaje</button>
+                <button type="submit" className="btn btn-primary">Send now</button>
               }
             </form>
             
             <div className="col"></div>
 
             <div className="col-md-4">
-              <h6 className="text-dark pb-2">Dirección</h6>
+              <h6 className="text-dark pb-2">Address</h6>
               <p className="small pb-4">Calle Atoyac 375 No.10, Col. Villa Bonita, Ensenada, BC. 22852</p>
             
-              <h6 className="text-dark pb-2">Horario</h6>
+              <h6 className="text-dark pb-2">Schedule</h6>
               <ul className="small pb-4">
-                <li className="mb-2"><i className="mdi mdi-chevron-right pr-1"></i>Lunes a viernes: 8am - 6pm</li>
-                <li className="mb-2"><i className="mdi mdi-chevron-right pr-1"></i>Sábado: 9am - 1pm</li>
+                <li className="mb-2"><i className="mdi mdi-chevron-right pr-1"></i>Monday to Friday: 8am - 6pm</li>
+                <li className="mb-2"><i className="mdi mdi-chevron-right pr-1"></i>Saturday: 9am - 1pm</li>
               </ul>
          
-              <h6 className="text-dark pb-2">Telefonos</h6>
+              <h6 className="text-dark pb-2">Phones</h6>
               <ul className="small pb-4">
-                <li className="mb-2"><i className="mdi mdi-chevron-right pr-1"></i>Teléfono Fijo: (646) 978 5965</li>
-                <li className="mb-2"><i className="mdi mdi-chevron-right pr-1"></i>Teléfono Movil MEX: (646) 207 0886</li>
-                <li className="mb-2"><i className="mdi mdi-chevron-right pr-1"></i>Teléfono Movil EEUU: (909) 904 9064</li>
+                <li className="mb-2"><i className="mdi mdi-chevron-right pr-1"></i>Phone: (646) 978 5965</li>
+                <li className="mb-2"><i className="mdi mdi-chevron-right pr-1"></i>Mobil MEX: (646) 207 0886</li>
+                <li className="mb-2"><i className="mdi mdi-chevron-right pr-1"></i>Mobil EEUU: (909) 904 9064</li>
                 <li className="mb-2"><i className="mdi mdi-chevron-right pr-1"></i>Email: info@bajacargosolutions.com</li>
               </ul>
 
@@ -206,7 +218,7 @@ const ContactPage = () => {
 
       <section className="container pt-5 pb-4 rounded">
         <div className="px-5 d-flex flex-column align-items-center">
-            <h2 className="text-dark pb-3 text-center text-center">Somos la solución confiable para tu carga.</h2>
+            <h2 className="text-dark pb-3 text-center text-center">We provide the following shipping services on a daily basis.</h2>
             {/* <p className="text-center">Logística a tiempo y sin problemas para tus cargas, fletes o movimientos de Exportación e Importación en México.</p> */}
         </div>
       </section>
@@ -215,30 +227,26 @@ const ContactPage = () => {
         <div className="row">
           <div className="col-md-6 col-sm-12 pb-5">
             <div className="pb-5">
-                <h5 className="text-dark pb-2">Transporte Terrestre</h5>
-                <p>Siempre buscando el beneficio de nuestros clientes asesorando en la logística de su cadena de
-                    suministros y entregas foráneas.</p>
+                <h5 className="text-dark pb-2">Truck freight-Intermodal</h5>
+                <p>Always looking for the benefit of our clients, advising on the logistics of their supply chain and foreign deliveries.</p>
             </div>
             <div className="pb-5">
-                <h5 className="text-dark pb-2">Transporte Marítimo</h5>
-                <p>Coordinación de fletes marítimos para carga seca, material peligroso, material frágil, contenedores
-                    refrigerados, carga sobredimensionada, etc.</p>
+                <h5 className="text-dark pb-2">Ocean Freight</h5>
+                <p>Coordination of ocean freight for dry cargo, hazardous material, fragile material, refrigerated containers, oversized cargo, etc.</p>
             </div>
           </div>
           <div className="col-md-6 col-sm-12 pb-5">
             <div className="pb-5">
-                <h5 className="text-dark pb-2">Transporte Intermodal</h5>
-                <p>Servicios combinados de transporte para optimizar y bajar costos en distancias largas, transbordos,
-                    consolidación y des consolidación de cargas.</p>
+                <h5 className="text-dark pb-2">Rail freight</h5>
+                <p>Combined transportation services to accelerate and reduce costs on long distances, transfers, consolidation and deconsolidation of loads.</p>
             </div>
             <div className="pb-5">
-                <h5 className="text-dark pb-2">Despacho Aduanal</h5>
-                <p>Contamos con agentes aduanales para realizar todo tipo de trámite aduanal para sus importaciones y
-                    exportaciones.</p>
+                <h5 className="text-dark pb-2">Warehousing</h5>
+                <p>We have customs agents to carry out all kinds of customs procedures for your imports and exports.</p>
             </div>
           </div>
           <div className="col pb-5 d-flex justify-content-center">
-            <Link to="/nosotros" className="btn btn-primary rounded">Conocenos</Link>
+            <Link to="/services" className="btn btn-primary rounded">Services</Link>
           </div>
         </div>
 
@@ -248,4 +256,4 @@ const ContactPage = () => {
   )
 }
 
-export default ContactPage
+export default ContactEnPage

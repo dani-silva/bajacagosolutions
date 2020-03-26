@@ -7,7 +7,7 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import SectionImage from "../components/section-image"
 
-const AboutServices = () => {
+const ServicesPage = () => {
 
   const data = useStaticQuery(graphql`
     query {
@@ -21,6 +21,13 @@ const AboutServices = () => {
       hero: file(relativePath: { eq: "carousel/hero-2.png" }) {
         childImageSharp {
           fluid(quality: 100) {
+              ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      terrestre: file(relativePath: { eq: "services/trailer.jpg" }) {
+        childImageSharp {
+          fluid(quality: 75) {
               ...GatsbyImageSharpFluid
           }
         }
@@ -51,28 +58,7 @@ const AboutServices = () => {
 
   return(
 
-    <Layout afterHeader={
-      <div className="border-bottom">
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-6 d-flex justify-content-start">
-              <ul className="nav">
-                <li className="nav-item">
-                  <a href="https://facebook.com/dovlius" className="nav-link px-2 py-2" target="_blank" rel="noopener noreferrer" title="Facebook"><i className="mdi mdi-facebook text-primary"> </i></a>
-                </li>
-                <li className="nav-item">
-                  <a href="https://facebook.com/dovlius" className="nav-link px-2 py-2" target="_blank" rel="noopener noreferrer" title="Pinterest"><i className="mdi mdi-pinterest text-primary"> </i></a>
-                </li>
-              </ul>
-            </div>
-            <div className="col-sm-6 d-flex align-items-center justify-content-end text-primary small">
-              <span><i className="mdi mdi-phone text-primary"> </i> (646) 978 5965 </span>
-              <span><i className="mdi mdi-email ml-4 text-primary"> </i> info@bajacargosolutions.com </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    }>
+    <Layout>
         <SEO title="Servicios de logistica" />
 
         <section className="container pt-5 pb-5 rounded">
@@ -92,7 +78,7 @@ const AboutServices = () => {
               "Contamos con una amplia cartera de socios comerciales en servicios terrestres para los requerimientos estándar o servicios especializados en todo el territorio de Estados Unidos y México. Esto nos permite desarrollar estrategias personalizadas a las necesidades del cliente ofreciendo diferentes opciones en costos de acuerdo a sus requerimientos y necesidades.",
               "Siempre buscando el beneficio de nuestros clientes asesorando en la logística de su cadena de suministros y entregas foráneas."
             ]}
-            src={<Img fluid={data.about.childImageSharp.fluid} className="rounded" alt="ubicados estratégicamente" />}
+            src={<Img fluid={data.terrestre.childImageSharp.fluid} className="rounded" alt="ubicados estratégicamente" />}
             reverse={true}
             // link={{to: "/servicios", title: "Ver más servicios"}}
             list={[
@@ -125,7 +111,7 @@ const AboutServices = () => {
             paragraph={[
               "Servicios combinados de transporte para optimizar y bajar costos en distancias largas, transbordos, consolidación y des consolidación de cargas. Este servicio se ofrece en combinación a los servicios ferroviarios en Estados Unidos y México."
             ]}
-            src={<Img fluid={data.about.childImageSharp.fluid} className="rounded" alt="ubicados estratégicamente" />}
+            src={<Img fluid={data.intermodal.childImageSharp.fluid} className="rounded" alt="ubicados estratégicamente" />}
             reverse={true}
             // link={{to: "/servicios", title: "Ver más servicios"}}
             
@@ -137,7 +123,7 @@ const AboutServices = () => {
             paragraph={[
               "Contamos con agentes aduanales para realizar todo tipo de trámite aduanal para sus importaciones y exportaciones dentro del territorio nacional, del lado americano EEUU, cruces fronterizos, puertos marítimos, etc."
             ]}
-            src={<Img fluid={data.maritim.childImageSharp.fluid} className="rounded" alt="exportación e importación" />}
+            src={<Img fluid={data.aduanal.childImageSharp.fluid} className="rounded" alt="exportación e importación" />}
             // link={{to: "contacto", title: "Contactar ahora"}}
         />
 
@@ -146,36 +132,7 @@ const AboutServices = () => {
             <h2 className="text-dark pb-3 text-center text-center">Somos la solución confiable para tu carga.</h2>
             <p className="text-center">Logística a tiempo y sin problemas para tus cargas, fletes o movimientos de Exportación e Importación en México.</p>
             
-            <Link to="/servicios" className="btn btn-primary rounded mt-4">Ver todos los servicios</Link>
-        </div>
-      </section>
-
-      <section className="container py-5">
-        <div className="row">
-          <div className="col-md-6 col-sm-12 pb-5">
-            <div className="pb-5">
-                <h5 className="text-dark pb-2">Transporte Terrestre</h5>
-                <p>Siempre buscando el beneficio de nuestros clientes asesorando en la logística de su cadena de
-                    suministros y entregas foráneas.</p>
-            </div>
-            <div className="pb-5">
-                <h5 className="text-dark pb-2">Transporte Marítimo</h5>
-                <p>Coordinación de fletes marítimos para carga seca, material peligroso, material frágil, contenedores
-                    refrigerados, carga sobredimensionada, etc.</p>
-            </div>
-          </div>
-          <div className="col-md-6 col-sm-12 pb-5">
-            <div className="pb-5">
-                <h5 className="text-dark pb-2">Transporte Intermodal</h5>
-                <p>Servicios combinados de transporte para optimizar y bajar costos en distancias largas, transbordos,
-                    consolidación y des consolidación de cargas.</p>
-            </div>
-            <div className="pb-5">
-                <h5 className="text-dark pb-2">Despacho Aduanal</h5>
-                <p>Contamos con agentes aduanales para realizar todo tipo de trámite aduanal para sus importaciones y
-                    exportaciones.</p>
-            </div>
-          </div>
+            <Link to="/contacto" className="btn btn-primary rounded mt-4">Contactanos ahora mismo</Link>
         </div>
       </section>
 
@@ -183,4 +140,4 @@ const AboutServices = () => {
   )
 }
 
-export default AboutServices
+export default ServicesPage
