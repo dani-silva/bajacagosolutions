@@ -162,7 +162,7 @@ const ContactPage = () => {
               </div>
               {
                 isResponse.status != 'empty'
-                ? <div className={`alert alert-${isResponse.status}`}>{isResponse.message}</div>
+                ? <div className={`alert ${isResponse.status == 'success' ? "alert-warning" : "alert-success"}`}>{isResponse.message}</div>
                 : null
               }
               {
